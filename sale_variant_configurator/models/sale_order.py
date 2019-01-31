@@ -33,11 +33,16 @@ class SaleOrderLine(models.Model):
     product_tmpl_id = fields.Many2one(store=True, readonly=False,
                                       related=False)
     product_id = fields.Many2one(required=False)
+    # this is for getting the proper language for product description
+    partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        related='order_id.partner_id',
+        readonly=True,
+    )
 
     @api.onchange('product_tmpl_id')
     def _onchange_product_tmpl_id_configurator(self):
-        obj = super(SaleOrderLine, self)
-        res = obj._onchange_product_tmpl_id_configurator()
+        res = super()._onchange_product_tmpl_id_configurator()
         if self.product_tmpl_id.attribute_line_ids:
             domain = res.setdefault('domain', {})
             domain['product_uom'] = [
@@ -66,7 +71,7 @@ class SaleOrderLine(models.Model):
             pricelist=self.order_id.pricelist_id.id,
             uom=self.product_uom.id,
         )
-        # TODO: Check why this is reset
+        # product_configurator methods don't take into account this description
         if product_tmpl.description_sale:
             self.name = (
                 (self.name or '') + '\n' + product_tmpl.description_sale
@@ -74,6 +79,20 @@ class SaleOrderLine(models.Model):
         if self.order_id.pricelist_id and self.order_id.partner_id:
             self.price_unit = self.env['account.tax']._fix_tax_included_price(
                 product_tmpl.price, product_tmpl.taxes_id, self.tax_id,
+            )
+        return res
+
+    @api.onchange('product_id')
+    def product_id_change(self):
+        """Call again the configurator onchange after this main onchange
+        for making sure the SO line description is correct.
+        """
+        res = super().product_id_change()
+        self._onchange_product_id_configurator()
+        # product_configurator methods don't take into account this description
+        if self.product_id.description_sale:
+            self.name = (
+                (self.name or '') + '\n' + self.product_id.description_sale
             )
         return res
 
