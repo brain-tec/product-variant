@@ -34,27 +34,25 @@ class ProductProduct(models.Model):
         uom_model = self.env["uom.uom"]
         for product in self:
             price = product.fix_price or product.list_price
-            if "uom" in self.env.context:
-                price = product.uom_id._compute_price(
-                    price, uom_model.browse(self.env.context["uom"])
-                )
+            if self.env.context.get("uom"):
+                context_uom = uom_model.browse(self.env.context["uom"])
+                price = product.uom_id._compute_price(price, context_uom)
             product.lst_price = price
 
     def _compute_list_price(self):
         uom_model = self.env["uom.uom"]
         for product in self:
             price = product.fix_price or product.product_tmpl_id.list_price
-            if "uom" in self.env.context:
-                price = product.uom_id._compute_price(
-                    price, uom_model.browse(self.env.context["uom"])
-                )
+            if self.env.context.get("uom"):
+                context_uom = uom_model.browse(self.env.context["uom"])
+                price = product.uom_id._compute_price(price, context_uom)
             product.list_price = price
 
     def _inverse_product_lst_price(self):
         uom_model = self.env["uom.uom"]
         for product in self:
             vals = {}
-            if "uom" in self.env.context:
+            if self.env.context.get("uom"):
                 vals["fix_price"] = product.uom_id._compute_price(
                     product.lst_price, uom_model.browse(self.env.context["uom"])
                 )
