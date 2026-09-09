@@ -1,4 +1,7 @@
 
+[![Support the OCA](https://odoo-community.org/readme-banner-image)](https://odoo-community.org/get-involved?utm_source=repo-readme)
+
+# product-variant
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/product-variant&target_branch=14.0)
 [![Pre-commit Status](https://github.com/OCA/product-variant/actions/workflows/pre-commit.yml/badge.svg?branch=14.0)](https://github.com/OCA/product-variant/actions/workflows/pre-commit.yml?query=branch%3A14.0)
 [![Build Status](https://github.com/OCA/product-variant/actions/workflows/test.yml/badge.svg?branch=14.0)](https://github.com/OCA/product-variant/actions/workflows/test.yml?query=branch%3A14.0)
@@ -6,8 +9,6 @@
 [![Translation Status](https://translation.odoo-community.org/widgets/product-variant-14-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/product-variant-14-0/?utm_source=widget)
 
 <!-- /!\ do not modify above this line -->
-
-# product-variant
 
 TODO: add repo description.
 
@@ -26,7 +27,7 @@ addon | version | maintainers | summary
 [product_variant_configurator](product_variant_configurator/) | 14.0.1.0.0 |  | Provides an abstract model for product variant configuration.
 [product_variant_configurator_manual_creation](product_variant_configurator_manual_creation/) | 14.0.1.0.1 | <a href='https://github.com/ChrisOForgeFlow'><img src='https://github.com/ChrisOForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='ChrisOForgeFlow'/></a> | Provides a wizards to make variants on demand
 [product_variant_default_code](product_variant_default_code/) | 14.0.3.0.4 | <a href='https://github.com/Kev-Roche'><img src='https://github.com/Kev-Roche.png' width='32' height='32' style='border-radius:50%;' alt='Kev-Roche'/></a> | Product Variant Default Code
-[product_variant_inactive](product_variant_inactive/) | 14.0.2.0.2 |  | Product Variant Inactive
+[product_variant_inactive](product_variant_inactive/) | 14.0.2.0.3 |  | Product Variant Inactive
 [product_variant_sale_price](product_variant_sale_price/) | 14.0.1.0.0 |  | Allows to write fixed prices in product variants
 [product_variant_tree_qty_available](product_variant_tree_qty_available/) | 14.0.1.0.0 | <a href='https://github.com/dessanhemrayev'><img src='https://github.com/dessanhemrayev.png' width='32' height='32' style='border-radius:50%;' alt='dessanhemrayev'/></a> <a href='https://github.com/CetmixGitDrone'><img src='https://github.com/CetmixGitDrone.png' width='32' height='32' style='border-radius:50%;' alt='CetmixGitDrone'/></a> | Adds the 'QTY' button to product variant tree view
 [sale_order_line_variant_description](sale_order_line_variant_description/) | 14.0.1.0.0 |  | Sale order line variant description
